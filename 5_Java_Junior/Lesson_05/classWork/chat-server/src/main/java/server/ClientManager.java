@@ -72,8 +72,9 @@ public class ClientManager implements Runnable {
             try {
                 // Чтение данных
                 massageFromClient = bufferedReader.readLine();
+                // Если сообщение начинается с @, то оно персональное
                 String[] messages = massageFromClient.split(" ");
-                if (messages[1].charAt(0) == '$') {
+                if (messages[1].charAt(0) == '@') {
                     privateMessage(massageFromClient);
                 } else {
                     broadcastMessage(massageFromClient);
@@ -89,10 +90,12 @@ public class ClientManager implements Runnable {
         String[] messages = message.split(" ");
         String person = messages[1].substring(1);
         message = message.replaceFirst(person, "");
-        message = message.replaceFirst("\\$ ", "");
-        message = "$" + message;
+        message = message.replaceFirst("\\@ ", "");
+        message = "@" + message;
         for (ClientManager client : ClientManagerSingleton.getInstance()) {
             try {
+                // Если клиент равен по наименованию person, указанному в сообщении,
+                // отправим сообщение
                 if (client.name.equals(person)) {
                     client.bufferedWriter.write(message);
                     client.bufferedWriter.newLine();
