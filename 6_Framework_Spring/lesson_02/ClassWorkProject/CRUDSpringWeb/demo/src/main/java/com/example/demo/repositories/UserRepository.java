@@ -36,11 +36,28 @@ public class UserRepository {
         return user;
     }
 
-    public void delById(int id) {
+    public void deleteById(int id) {
         String sql = "DELETE FROM userTable WHERE id = ?";
         jdbc.update(sql, id);
     }
 
-    //public void deleteById(int id)
-    //"DELETE FROM userTable WHERE id=?"
+    public void update(User user) {
+        String sql = "UPDATE userTable SET firstName = ?, lastName = ? WHERE id = ?";
+        jdbc.update(sql, user.getFirstName(), user.getLastName(), user.getId());
+    }
+
+    public User getUserById(int id) {
+        String sql = "SELECT * FROM userTable WHERE id = ?";
+
+        RowMapper<User> userRowMapper = (r, i) -> {
+            User rowObject = new User();
+            rowObject.setId(r.getInt("id"));
+            rowObject.setFirstName(r.getString("firstName"));
+            rowObject.setLastName(r.getString("lastName"));
+            return rowObject;
+        };
+
+        return jdbc.queryForObject(sql, userRowMapper, id);
+    }
+
 }
