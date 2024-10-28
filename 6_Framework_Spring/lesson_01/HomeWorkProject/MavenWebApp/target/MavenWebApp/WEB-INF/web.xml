@@ -1,0 +1,17 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <servlet> <!--    здесь прописан путь к Java-классу-->
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>ru.example.HelloServlet</servlet-class>
+
+    </servlet>
+    <servlet-mapping> <!--        здесь прописан путь к куску адресной строки, вызывающей сервлет-->
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+</web-app>

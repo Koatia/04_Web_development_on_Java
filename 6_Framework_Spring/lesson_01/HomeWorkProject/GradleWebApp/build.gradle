@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'war' // Плагин для создания WAR-файла
+}
+
+group = 'ru.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Зависимость для Servlet API
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+
+    // Зависимости для Jetty
+    implementation 'org.eclipse.jetty:jetty-server:11.0.24'  // Обновленная версия Jetty
+    implementation 'org.eclipse.jetty:jetty-servlet:11.0.24'
+    implementation 'org.eclipse.jetty:jetty-webapp:11.0.24'  // Последняя версия для поддержки веб-приложений
+    implementation 'org.eclipse.jetty:jetty-util:11.0.24'    // Последняя версия утилит Jetty
+
+    // Логирование (SLF4J) — используем стабильную версию
+    // Зависимость для Logback (вместо SLF4J Simple)
+    implementation 'ch.qos.logback:logback-classic:1.5.11'
+    implementation 'ch.qos.logback:logback-core:1.5.11'
+}
+
+// Настройка сборки для WAR
+war {
+    from("src/main/webapp") {
+        include '**'
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE // Игнорировать дубликаты
+}
+
+// Задача для запуска Jetty
+tasks.register('runJetty', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('ru.example.JettyStart') // Используем mainClass вместо main (устаревший)
+}

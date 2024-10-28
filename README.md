@@ -1,0 +1,8 @@
+1 Java Core (lectures)
+2 Java Core (workshops)
+3 Java Development Kit (lectures)
+4 Java Development Kit (workshops)
+5 Java Junior (lectures)
+6 Java Junior (workshops)
+7 Фреймворк Spring (lectures)
+8 Фреймворк Spring (workshops)

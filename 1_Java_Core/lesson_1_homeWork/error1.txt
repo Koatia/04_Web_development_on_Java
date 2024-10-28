@@ -1,0 +1,120 @@
+$ docker run --rm -v $(pwd)/docs:/app/docs:z javadoc-generator
+Loading source files for package main.ru.example...
+Constructing Javadoc information...
+Building index for all the packages and classes...
+Standard Doclet version 17-ea+14
+Building tree for all the packages and classes...
+Generating /app/docs/main/ru/example/ui/ClientGUI.html...
+src/main/ru/example/ui/ClientGUI.java:14: warning: no comment
+public class ClientGUI extends JFrame implements ClientView {
+       ^
+src/main/ru/example/ui/ClientGUI.java:44: warning: no comment
+    public ClientGUI() {
+           ^
+src/main/ru/example/ui/ClientGUI.java:157: warning: no comment
+    public void callByName(Object obj, String funcName) throws Exception {
+                ^
+src/main/ru/example/ui/ClientView.java:16: warning: no comment
+    ArrayList<String> getMyListRepo();
+                      ^
+src/main/ru/example/ui/ClientView.java:12: warning: no comment
+    String getPath();
+           ^
+src/main/ru/example/ui/ClientView.java:14: warning: no comment
+    String getRepo();
+           ^
+src/main/ru/example/ui/ClientView.java:10: warning: no comment
+    void setLog(String text);
+         ^
+src/main/ru/example/ui/ClientView.java:8: warning: no comment
+    void setController(Controller controller);
+         ^
+Generating /app/docs/main/ru/example/ui/ClientView.html...
+src/main/ru/example/ui/ClientView.java:7: warning: no comment
+public interface ClientView {
+       ^
+Generating /app/docs/main/ru/example/domain/Controller.html...
+src/main/ru/example/domain/Controller.java:11: warning: no comment
+public class Controller {
+       ^
+src/main/ru/example/domain/Controller.java:20: warning: no comment
+    public Controller(ClientView clientView) {
+           ^
+src/main/ru/example/domain/Controller.java:67: warning: no comment
+    public void filesRename() {
+                ^
+src/main/ru/example/domain/Controller.java:44: warning: no comment
+    public void gitPush() throws IOException, InterruptedException {
+                ^
+src/main/ru/example/domain/Controller.java:29: warning: no comment
+    public void gitStatus() throws IOException, InterruptedException {
+                ^
+src/main/ru/example/domain/Controller.java:76: warning: no comment
+    public void itWasChanged() {
+                ^
+Generating /app/docs/main/ru/example/domain/GitProcessChecker.html...
+src/main/ru/example/domain/GitProcessChecker.java:8: warning: no comment
+public class GitProcessChecker {
+       ^
+src/main/ru/example/domain/GitProcessChecker.java:31: warning: no comment
+    public static void checkRepositories(List<String> repoPaths) {
+                       ^
+src/main/ru/example/domain/GitProcessChecker.java:61: warning: no comment
+    public static void main(String[] args) {
+                       ^
+src/main/ru/example/domain/GitProcessChecker.java:11: warning: no comment
+    public static String runGitCommand(File repoDir, String command) throws IOException, InterruptedException {
+                         ^
+Generating /app/docs/main/ru/example/Main.html...
+src/main/ru/example/Main.java:6: warning: no comment
+public class Main {
+       ^
+src/main/ru/example/Main.java:7: warning: no comment
+    public static void main(String[] args) {
+                       ^
+Generating /app/docs/main/ru/example/package-summary.html...
+Generating /app/docs/main/ru/example/package-tree.html...
+Generating /app/docs/main/ru/example/domain/package-summary.html...
+Generating /app/docs/main/ru/example/domain/package-tree.html...
+Generating /app/docs/main/ru/example/ui/package-summary.html...
+Generating /app/docs/main/ru/example/ui/package-tree.html...
+Generating /app/docs/serialized-form.html...
+src/main/ru/example/ui/ClientGUI.java:32: warning: no comment
+    Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
+           ^
+src/main/ru/example/ui/ClientGUI.java:18: warning: no comment
+    private Controller controller;
+                       ^
+src/main/ru/example/ui/ClientGUI.java:30: warning: no comment
+    private JTextArea log, pathField, repoName;
+                      ^
+src/main/ru/example/ui/ClientGUI.java:28: warning: no comment
+    private ArrayList<JButton> myListBtnCom = new ArrayList<>();
+                               ^
+src/main/ru/example/ui/ClientGUI.java:24: warning: no comment
+    private ArrayList<JRadioButton> myListBtnRepo = new ArrayList<>();
+                                    ^
+src/main/ru/example/ui/ClientGUI.java:26: warning: no comment
+    private ArrayList<String> myListCommand = new ArrayList<>(Arrays.asList("gitStatus", "gitPull", "filesRename",
+                              ^
+src/main/ru/example/ui/ClientGUI.java:22: warning: no comment
+    private ArrayList<String> myListRepo = new ArrayList<>(Arrays.asList("00_Codes", "01_Start_GeekBrains",
+                              ^
+src/main/ru/example/ui/ClientGUI.java:30: warning: no comment
+    private JTextArea log, pathField, repoName;
+                           ^
+src/main/ru/example/ui/ClientGUI.java:20: warning: no comment
+    private String REPO_PATH = "/mnt/Data/_Repositories/";
+                   ^
+src/main/ru/example/ui/ClientGUI.java:30: warning: no comment
+    private JTextArea log, pathField, repoName;
+                                      ^
+Generating /app/docs/overview-tree.html...
+Generating /app/docs/index.html...
+Building index for all classes...
+Generating /app/docs/allclasses-index.html...
+Generating /app/docs/allpackages-index.html...
+Generating /app/docs/index-all.html...
+Generating /app/docs/overview-summary.html...
+Generating /app/docs/help-doc.html...
+31 warnings
