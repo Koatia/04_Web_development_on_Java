@@ -11,9 +11,11 @@ import java.util.List;
 public class UserRepository {
 
     private final JdbcTemplate jdbc;
+    private final SqlCMD sqlCMD;
 
-    public UserRepository(JdbcTemplate jdbc) {
+    public UserRepository(JdbcTemplate jdbc, SqlCMD sqlCMD) {
         this.jdbc = jdbc;
+        this.sqlCMD = sqlCMD;
     }
 
     /**
@@ -22,8 +24,6 @@ public class UserRepository {
      * @return список пользователей
      */
     public List<User> findAll() {
-        String sql = "SELECT * FROM userTable";
-
         RowMapper<User> userRowMapper = (r, i) -> {
             User rowObject = new User();
             rowObject.setId(r.getLong("id"));
@@ -32,7 +32,7 @@ public class UserRepository {
             return rowObject;
         };
 
-        return jdbc.query(sql, userRowMapper);
+        return jdbc.query(sqlCMD.getFindAll(), userRowMapper);
     }
 
     /**
@@ -42,8 +42,7 @@ public class UserRepository {
      * @return пользователь (объект класса User)
      */
     public User save(User user) {
-        String sql = "INSERT INTO userTable (firstName, lastName) VALUES (?, ?)";
-        jdbc.update(sql, user.getFirstName(), user.getLastName());
+        jdbc.update(sqlCMD.getSave(), user.getFirstName(), user.getLastName());
         return user;
     }
 
@@ -53,8 +52,7 @@ public class UserRepository {
      * @param id ID пользователя
      */
     public void deleteById(Long id) {
-        String sql = "DELETE FROM userTable WHERE id = ?";
-        jdbc.update(sql, id);
+        jdbc.update(sqlCMD.getDeleteById(), id);
     }
 
     /**
@@ -63,8 +61,7 @@ public class UserRepository {
      * @param user пользователь (объект класса User)
      */
     public void update(User user) {
-        String sql = "UPDATE userTable SET firstName = ?, lastName = ? WHERE id = ?";
-        jdbc.update(sql, user.getFirstName(), user.getLastName(), user.getId());
+        jdbc.update(sqlCMD.getUpdate(), user.getFirstName(), user.getLastName(), user.getId());
     }
 
     /**
@@ -74,8 +71,6 @@ public class UserRepository {
      * @return пользователь
      */
     public User getUserById(Long id) {
-        String sql = "SELECT * FROM userTable WHERE id = ?";
-
         RowMapper<User> userRowMapper = (r, i) -> {
             User rowObject = new User();
             rowObject.setId(r.getLong("id"));
@@ -83,7 +78,6 @@ public class UserRepository {
             rowObject.setLastName(r.getString("lastName"));
             return rowObject;
         };
-
-        return jdbc.queryForObject(sql, userRowMapper, id);
+        return jdbc.queryForObject(sqlCMD.getGetUserById(), userRowMapper, id);
     }
 }
