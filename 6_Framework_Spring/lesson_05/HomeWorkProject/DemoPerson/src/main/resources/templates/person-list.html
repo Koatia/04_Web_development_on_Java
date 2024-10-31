@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link href="/css/user-style.css" rel="stylesheet"/>
+</head>
+<body>
+<div th:switch="${persons}">
+    <h2 th:case="null">No person found!</h2>
+    <div th:case="*">
+        <h2>Список персон</h2>
+        <table border="0">
+            <caption>Таблица список персон</caption>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <!--                <th>Edit</th>-->
+                <!--                <th>Delete</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="person : ${persons}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.firstName}"></td>
+                <td th:text="${person.lastName}"></td>
+                <td th:text="${person.email}"></td>
+                <td><a th:href="@{person-update/{id}(id=${person.id})}">Edit</a></td>
+                <td>
+                    <form th:action="@{/person-delete/{id}(id=${person.id})}" method="post">
+                        <button type="submit" style="color: red;">Delete</button>
+                    </form>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--    <p><a href="/person-create">Create person</a></p>-->
+    <form action="/person-creat" method="post">
+        <button type="submit" style="color: green;">Create person</button>
+    </form>
+</div>
+</body>
+</html>
