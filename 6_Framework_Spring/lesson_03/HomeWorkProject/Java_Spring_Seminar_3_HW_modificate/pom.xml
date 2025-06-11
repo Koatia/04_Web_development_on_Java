@@ -15,7 +15,7 @@
     <description>Demo project for Spring Boot REST USER SERVICE</description>
     <properties>
         <java.version>23</java.version>
-        <postgresql.version>42.7.4</postgresql.version>
+        <postgresql.version>42.7.7</postgresql.version>
         <liquibase.version>4.29.2</liquibase.version>
         <preliquibase.version>1.5.1</preliquibase.version>
     </properties>
